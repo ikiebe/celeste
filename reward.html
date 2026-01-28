@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste | Reward Structure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* BASE STYLES */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #002b0f 0%, #000b02 70%, #000000 100%);
+            font-family: 'Inter', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        /* LOGO & NAV */
+        .logo {
+            font-size: 35px;
+            font-weight: 900;
+            color: #00ff40;
+            text-align: center;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 64, 0.1);
+            width: 100%;
+        }
+
+        .navbar a {
+            color: #00ff40;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 6px 10px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .navbar a.active {
+            border-bottom: 3px solid #00ff40;
+        }
+        
+        .navbar a:hover { 
+            color: #fff; 
+        }
+
+        /* TITLE */
+        .title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 900;
+            margin-top: 25px;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        /* REWARD BOXES */
+        .reward-box {
+            width: 100%;
+            max-width: 420px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #00ff40;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 25px rgba(0, 255, 64, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .plan-label {
+            font-size: 26px;
+            font-weight: 900;
+            color: #00ff40;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        /* PRICE ROW */
+        .price-container {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            color: #888;
+            text-decoration: line-through;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .new-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .timer {
+            font-size: 14px;
+            color: white;
+            background-color: #ff0000;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .earn-box {
+            width: 100%;
+            background: rgba(0, 255, 64, 0.05);
+            padding: 14px;
+            margin: 5px 0;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: left;
+            font-weight: 500;
+            border-left: 3px solid #00ff40;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .earn-box i {
+            color: #00ff40;
+            margin-top: 3px;
+            font-size: 16px;
+        }
+
+        /* WITHDRAWAL BOX */
+        .withdraw-box {
+            margin-top: 20px;
+            border: 1px dashed #00ff40;
+            background: rgba(0, 255, 64, 0.02);
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .withdraw-box .star-header {
+            color: #00ff40;
+            font-weight: 900;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .withdraw-box .label {
+            color: #aaa;
+            font-weight: 500;
+            font-size: 0.9em;
+            display: block;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .withdraw-box .value {
+            color: white;
+            font-weight: 800;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* ACTION BUTTON */
+        .plan-button {
+            width: 100%;
+            background: linear-gradient(135deg, #00ff40, #00cc33);
+            color: black;
+            border: none;
+            border-radius: 12px;
+            padding: 18px;
+            font-weight: 950;
+            font-size: 19px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0, 255, 64, 0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+            animation: pulse 2s infinite;
+        }
+
+        .plan-button:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 64, 0.5);
+            animation-play-state: paused;
+        }
+
+        /* ===============================
+   PULSE ANIMATION (ONE TIME)
+   =============================== */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 64, 0.6);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 12px rgba(0, 255, 64, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 64, 0);
+    }
+}
+        
+        .best-plan {
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            font-size: 12px;
+            font-weight: 900;
+            color: black;
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        /* ACTIVITY FEED */
+        .activity-feed-container {
+            position: fixed;
+            bottom: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 900; 
+            width: 90%;
+            max-width: 380px;
+            padding: 12px 18px;
+            background: rgba(0, 11, 2, 0.95);
+            border: 1px solid #00ff40;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 255, 64, 0.2);
+            display: flex;
+            align-items: center;
+            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            backdrop-filter: blur(10px);
+        }
+
+        .show-activity { bottom: 20px; }
+
+        .activity-icon { color: #00ff40; margin-right: 12px; font-size: 22px; }
+
+        #activity-text { flex-grow: 1; font-size: 13px; color: white; line-height: 1.4; }
+
+        .activity-user { color: #00ff40; font-weight: 700; }
+        
+        .activity-amount { color: #00ff40; font-weight: 900; }
+        
+        .activity-time { color: #666; font-size: 11px; display: block; margin-top: 2px; }
+        
+        /* FOOTER */
+        .footer {
+            flex-shrink: 0;
+            width: 100%;
+            text-align: center;
+            padding: 30px 0;
+            color: #444;
+            font-size: 12px;
+            background: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #001a08;
+            border: 1px solid #00ff40;
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 255, 64, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 50px;
+            color: #00ff40;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #00ff40;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .modal-text {
+            color: #e0e0e0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-close-btn {
+            background: #00ff40;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 30px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">CELESTE</div>
+<div class="navbar">
+    <a href='/'>Home</a>
+    <a class='active' href='/reward'>Rewards</a>
+    <a href="#" id="register-link">Register</a>
+</div>
+
+<div class="title">Choose Your Earning Plan:</div>
+
+<main>
+    <!-- EURO LITE PLAN -->
+    <div class="reward-box">
+        <div class="plan-label"><i class="fas fa-bolt"></i>  Euro-Lite</div>
+        <div class="price-container">
+            <div class="old-price">₦17,000</div>
+            <div class="new-price">₦8,500</div>
+        </div>
+        <div class="timer"><i class="fas fa-clock"></i> DISCOUNT ENDS: <span id="countdown1">01:30:00</span></div>
+
+        <div class="earn-box"><i class="fas fa-id-card"></i> One-time Activation Fee: €4.25</div>
+        <div class="earn-box"><i class="fas fa-wallet"></i> €3.50 (₦7,000) Welcome Cashback</div>
+ <div class="earn-box"><i class="fas fa-video"></i> €1 (₦2,000) per Comedy Review</div>
+        <div class="earn-box"><i class="fas fa-diagram-predecessor"></i>  TikTok Live Bonus – €2.5 (₦5,000) per session</div>
+        <div class="earn-box"><i class="fas fa-calendar-check"></i> Subscription Valid For 6 Months</div>
+        <div class="earn-box"><i class="fas fa-lock-open"></i> Limited Earning Potential Upgradeable</div>
+        <div class="earn-box"><i class="fas fa-bolt"></i> Access to TikTok & Telegram Add-ons</div>
+
+        <div class="withdraw-box">
+            <span class="label">⏰ WITHDRAWAL WINDOW</span>
+            <span class="value">Saturdays (9AM - 6PM)</span>
+            <span class="label">💰 MINIMUM PAYOUT</span>
+            <span class="value">₦5,000</span>
+        </div>
+
+        <button class="plan-button" data-plan="Celeste Euro-Lite (₦8,500)">Activate Lite Plan</button>
+    </div>
+
+    <!-- EURO MAX PLAN -->
+    <div class="reward-box">
+        <div class="best-plan">MOST PROFITABLE</div>
+        <div class="plan-label"><i class="fas fa-bolt"></i>  Euro-Max</div>
+        <div class="price-container">
+            <div class="old-price">₦30,000</div>
+            <div class="new-price">₦14,500</div>
+        </div>
+        <div class="timer"><i class="fas fa-clock"></i> DISCOUNT ENDS: <span id="countdown2">01:30:00</span></div>
+
+        <div class="earn-box"><i class="fas fa-id-card-clip"></i> One-time Activation Fee: €7.25</div>
+        <div class="earn-box"><i class="fas fa-wallet"></i> €6.00 (₦12,000) Welcome Cashback</div>
+        <div class="earn-box"><i class="fas fa-video"></i> €2 (₦4,000) per Comedy Review</div>
+        <div class="earn-box"><i class="fas fa-sitemap"></i> TikTok Live Bonus – €5 (₦10,000) per session</div>
+        <div class="earn-box"><i class="fas fa-calendar-star"></i> Subscription Valid For 12 Months</div>
+        <div class="earn-box"><i class="fas fa-infinity"></i> Unlimited Daily Review Earnings</div>
+        <div class="earn-box"><i class="fas fa-rocket"></i> Full Access to High-Tier Add-ons</div>
+
+        <div class="withdraw-box">
+            <span class="star-header"><i class="fas fa-star"></i> DAILY WITHDRAWAL <i class="fas fa-star"></i></span>
+            <span class="label">WITHDRAWAL WINDOW</span>
+            <span class="value">Every Day (9AM - 6PM)</span>
+            <span class="label">MINIMUM PAYOUT</span>
+            <span class="value">₦10,000</span>
+        </div>
+
+        <button class="plan-button" data-plan="Celeste Euro-Max (₦14,500)">Activate Max Plan</button>
+    </div>
+</main>
+
+<div class="footer">&copy; 2026 CELESTE ECOSYSTEM | ALL RIGHTS RESERVED</div>
+
+<!-- ACTIVITY NOTIFICATION -->
+<div id="activity-feed" class="activity-feed-container">
+    <div class="activity-icon" id="act-icon"><i class="fas fa-circle-check"></i></div>
+    <div id="activity-text">Live activity monitoring active...</div>
+</div>
+
+<!-- PROFESSIONAL ACCESS MODAL -->
+<div id="access-denied-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-icon"><i class="fas fa-shield-exclamation"></i></div>
+        <h2 class="modal-title">Selection Required</h2>
+        <p class="modal-text">
+            To proceed with your account registration, you must first select a preferred earning structure. Please review our <strong>Euro-Lite</strong> or <strong>Euro-Max</strong> plans and click "Activate" to continue.
+        </p>
+        <button class="modal-close-btn" onclick="closeModal()">Review Plans</button>
+    </div>
+</div>
+
+<script>
+// 10 Unique Activity Entries with Icons
+const ACTIVITIES = [
+    { name: "Olamide B.", type: "withdrawn", amount: "€45 (₦90,000)", loc: "Lagos", time: "2m ago", icon: "fa-wallet" },
+    { name: "Queen clara", type: "withdrawn", amount: "€65 (₦130,000)", loc: "Rivers PH", time: "10m ago", icon: "fa-wallet" },
+    { name: "Miracle C.", type: "activated", amount: "₦14,500", plan: "Euro-Max", loc: "Ghana", time: "2m ago", icon: "fa-bolt" },
+    { name: "Lizzy D.", type: "withdrawn", amount: "€90 (₦180,000)", loc: "Anambra", time: "30m ago", icon: "fa-wallet" },
+    { name: "Rose E..", type: "activated", amount:  "₦8,500", plan: "Euro-Lite", loc: "Lagos", time: "2m ago", icon: "fa-bolt" },
+    { name: "Emeka U.", type: "activated", amount: "₦14,500", plan: "Euro-Max", loc: "Enugu", time: "just now", icon: "fa-bolt" },
+    { name: "Sarah J.", type: "activated", amount: "₦8,500", plan: "Euro-Lite", loc: "Abuja", time: "5m ago", icon: "fa-check-double" },
+    { name: "Yusuf K.", type: "withdrawn", amount: "€12 (₦24,000)", loc: "Kano", time: "1m ago", icon: "fa-money-bill-transfer" },
+    { name: "Blessing W.", type: "activated", amount: "₦14,500", plan: "Euro-Max", loc: "Warri", time: "8m ago", icon: "fa-star" },
+    { name: "Tunde A.", type: "withdrawn", amount: "€28 (₦56,000)", loc: "Ibadan", time: "12m ago", icon: "fa-hand-holding-dollar" },
+    { name: "Chioma N.", type: "activated", amount: "₦14,500", plan: "Euro-Max", loc: "Port Harcourt", time: "3m ago", icon: "fa-shield-halved" },
+    { name: "Ibrahim D.", type: "withdrawn", amount: "€60 (₦120,000)", loc: "Kaduna", time: "15m ago", icon: "fa-money-check-dollar" },
+    { name: "Gloria S.", type: "activated", amount: "₦8,500", plan: "Euro-Lite", loc: "Calabar", time: "6m ago", icon: "fa-circle-plus" },
+    { name: "David O.", type: "withdrawn", amount: "€18 (₦36,000)", loc: "Benin City", time: "4m ago", icon: "fa-vault" }
+];
+
+let activityIndex = 0;
+
+function cycleActivity() {
+    const feed = document.getElementById('activity-feed');
+    const text = document.getElementById('activity-text');
+    const iconDiv = document.getElementById('act-icon');
+    const act = ACTIVITIES[activityIndex];
+
+    iconDiv.innerHTML = `<i class="fas ${act.icon}"></i>`;
+
+    let msg = act.type === 'activated' 
+        ? `<span class="activity-user">${act.name}</span> from ${act.loc} activated <span class="activity-user">${act.plan}</span> <span class="activity-amount">${act.amount}</span>`
+        : `<span class="activity-user">${act.name}</span> from ${act.loc} successfully withdrawn <span class="activity-amount">${act.amount}</span>`;
+
+    text.innerHTML = `${msg}<span class="activity-time">${act.time}</span>`;
+    
+    feed.classList.add('show-activity');
+    
+    setTimeout(() => {
+        feed.classList.remove('show-activity');
+        activityIndex = (activityIndex + 1) % ACTIVITIES.length;
+        setTimeout(cycleActivity, 3000);
+    }, 8000);
+}
+
+// Timer Logic (1 Hour 30 Minutes)
+function startTimer(duration, display) {
+    let timer = duration;
+    setInterval(() => {
+        let h = Math.floor(timer / 3600);
+        let m = Math.floor((timer % 3600) / 60);
+        let s = Math.floor(timer % 60);
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        display.textContent = `${h}:${m}:${s}`;
+        if (--timer < 0) timer = duration;
+    }, 1000);
+}
+
+function showModal() { document.getElementById('access-denied-modal').style.display = 'flex'; }
+function closeModal() { document.getElementById('access-denied-modal').style.display = 'none'; }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const timerSeconds = 1 * 3600 + 30 * 60; 
+    startTimer(timerSeconds, document.getElementById('countdown1'));
+    startTimer(timerSeconds, document.getElementById('countdown2'));
+
+    // Handle Plan Selection
+    document.querySelectorAll('.plan-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedPlan = btn.getAttribute('data-plan');
+            localStorage.setItem('selectedPlan', selectedPlan);
+            window.location.href = 'register.html';
+        });
+    });
+
+    // Handle Register Link with Modal Logic
+    document.getElementById('register-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        const plan = localStorage.getItem('selectedPlan');
+        if (!plan) {
+            showModal();
+        } else {
+            window.location.href = 'register.html';
+        }
+    });
+
+    // Start Live Feed
+    setTimeout(cycleActivity, 2000);
+});
+</script>
+
+</body>
+</html>
+

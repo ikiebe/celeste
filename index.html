@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste Official | Empowering Your Time</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #00ff40;
+            --dark-bg: #000b02;
+            --glass: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.15);
+            --container-width: 1100px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top, #001a0a 0%, #000000 100%);
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            color: white;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 2px solid rgba(0, 255, 64, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 64, 0.6));
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00ff40, #fff, #00ff40);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .main-join-btn {
+            background: var(--primary-green);
+            color: black;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 920;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 64, 0.3);
+            border: none;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .main-join-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 64, 0.5);
+        }
+
+        .box-btn {
+            background: white;
+            color: black;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 17px;
+            text-transform: uppercase;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.3s;
+            border: none;
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .box-btn:hover {
+            background: var(--primary-green);
+            transform: scale(1.02);
+        }
+        .main-join-btn,
+.box-btn {
+    animation: pulse 2s infinite;
+}
+
+.main-join-btn:hover,
+.box-btn:hover {
+    animation-play-state: paused;
+}
+
+/* ---------- ADD THIS PART ---------- */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 64, 0.6);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 12px rgba(0, 255, 64, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 64, 0);
+    }
+ }
+
+        .unified-container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        .video-box {
+            margin-top: 130px;
+            margin-bottom: 40px;
+            background: var(--glass);
+            border: 2px solid var(--primary-green);
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 255, 64, 0.15);
+        }
+
+        .video-box video {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            background: #000;
+        }
+
+        .bright-header {
+            text-align: center;
+            padding: 60px 0 30px;
+        }
+
+        .bright-header h2 {
+            font-size: clamp(1.5rem, 2vw, 3.5rem);
+            font-weight: 880;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            margin: 0;
+            line-height: 1;
+            font-family: "Times New Roman", Times, serif;
+        }
+    
+        /* GRID */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .work-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            min-height: 655px;
+        }
+
+        .work-box:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-10px);
+        }
+
+        .work-box img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        .work-box h3 {
+            color: var(--primary-green);
+            margin: 10px 0;
+            font-weight: 805;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Styling for internal icons */
+        .work-box p i {
+            color: var(--primary-green);
+            margin-right: 5px;
+        }
+
+        .work-box p {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 25px;
+            text-align: left;
+            white-space: pre-line;
+        }
+
+        /* STATS & LIVE BUTTON */
+        .trust-section {
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 255, 64, 0.1);
+            border: 1px solid var(--primary-green);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .live-badge {
+            background: rgba(0, 255, 64, 0.2);
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-green);
+            animation: pulse-active 1.5s infinite;
+        }
+
+        @keyframes pulse-active {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .stat-text h2 {
+            font-size: 36px;
+            margin: 0;
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+
+        /* FAQ */
+        .faq-section {
+            margin-bottom: 100px;
+        }
+
+        details {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 22px;
+            cursor: pointer;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after { 
+            content: "\f0fe"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+
+        details[open] summary::after { content: "\f146"; }
+
+        /* FOOTER */
+        .main-footer {
+            background: #000;
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-column ul { list-style: none; padding: 0; }
+        .footer-column ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; color: #999; }
+        .footer-column i { color: var(--primary-green); }
+        .footer-column a { color: #999; text-decoration: none; }
+
+        .copyright { margin-top: 60px; text-align: center; border-top: 1px solid #111; padding-top: 30px; color: #444; font-size: 12px; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .trust-section { flex-direction: column; text-align: center; }
+            .work-box { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <a class='logo-container' href='/'>
+            <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ff40/000000?text=C'">
+            <div class="logo-text">CELESTE</div>
+        </a>
+        <a class='main-join-btn' href='reward.html'>GET STARTED</a>
+    </div>
+
+    <div id="about-section" class="unified-container video-box">
+        <video src="video.mp4" controls playsinline></video>
+        <a class='main-join-btn' href='reward.html'>JOIN CELESTE NOW <i class="fas fa-fire"></i></a>
+    </div>
+
+    <div id="features-section" class="unified-container bright-header">
+        <h2>HOW IT WORKS:</h2>
+    </div>
+
+    <div class="unified-container">
+        <div class="works-grid">
+            <!-- Box 1 -->
+            <div class="work-box">
+                <img src="hero1.jpg" alt="TikTok" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=TikTok+Earnings'">
+                <h3><i class="fas fa-euro-sign"></i> CELESTE – TikTok Earnings</h3>
+                <p>With CELESTE, you don’t need to go Live, be famous, or have thousands of followers.
+                Just join, engage, and earn real cash <i class="fas fa-coins"></i>
+                How You Earn on TikTok:
+                - <i class="fas fa-hand-pointer"></i> Double-tap during Live
+                - <i class="fas fa-share-nodes"></i> Share the Live
+                - <i class="fas fa-chart-line"></i> Stay active and engage
+                <i class="fas fa-arrow-right"></i> Earn up to €2 per tap</p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="work-box">
+                <img src="hero2.jpg" alt="Telegram" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Telegram+Monetize'">
+                <h3><i class="fas fa-euro-sign"></i> MONETIZE TELEGRAM</h3>
+                <p>No channel. No group. No followers needed.
+                2 Easy Ways to Earn:
+                1. <i class="fas fa-circle-play"></i> Telegram Stories – Earn €1 per view
+                2. <i class="fas fa-vault"></i> Stake Your Euros – Grow your earnings automatically with the CELESTE bot <i class="fas fa-robot"></i></p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="work-box">
+                <img src="hero3.jpg" alt="Watch & Earn" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Watch+and+Earn'">
+                <h3><i class="fas fa-video"></i> WATCH, REVIEW & EARN</h3>
+                <p>Watch fun content, react, and leave honest reviews.
+                No skills, no content creation required.
+                Earn up to €10 daily just by engaging.
+                Entertainment now pays. CELESTE makes it real. <i class="fas fa-bolt"></i></p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="work-box">
+                <img src="hero4.jpg" alt="Twitter X" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Twitter+X+Earnings'">
+                <h3><i class="fas fa-hashtag"></i> TWITTER (X) MONETIZATION</h3>
+                <p>CELESTE rewards real Twitter engagement with Euro earnings.
+                Earn by completing simple tasks that boost visibility.
+                How You Earn:
+                - <i class="fas fa-heart"></i> Like tweets – €2
+                - <i class="fas fa-comment"></i> Comment on posts – €4
+                - <i class="fas fa-retweet"></i> Retweet content – €5
+                - <i class="fas fa-user-check"></i> Consistent engagement – €3</p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="work-box">
+                <img src="hero5.jpg" alt="Telegram Live" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Telegram+Live'">
+                <h3><i class="fas fa-paper-plane"></i> TELEGRAM LIVE: Learn & Earn</h3>
+                <p>Join CELESTE Telegram Live sessions and earn while learning.
+                Earn €5 (₦10,000) every 20 minutes just by listening and engaging.
+                What You Get:
+                - <i class="fas fa-bell"></i> Exclusive updates
+                - <i class="fas fa-microphone"></i> Live discussions
+                - <i class="fas fa-medal"></i> Real-time rewards for participation</p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 6 -->
+            <div class="work-box">
+                <img src="hero6.jpg" alt="Snap & Earn" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Snap+and+Upload'">
+                <h3><i class="fas fa-camera"></i> SNAP, UPLOAD & EARN</h3>
+                <p>Turn every photo into instant cash.
+                How It Works:
+                - <i class="fas fa-camera-retro"></i> Snap any photo
+                - <i class="fas fa-cloud-arrow-up"></i> Upload it on CELESTE
+                - <i class="fas fa-money-bill-trend-up"></i> Earn €2.5 (₦5,000) per photo
+                Simple. Fast. Profitable.</p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 7 -->
+            <div class="work-box">
+                <img src="hero7.jpg" alt="Casino" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=Casino+Games'">
+                <h3><i class="fas fa-gamepad"></i> PLAY, WIN & EARN</h3>
+                <p>Gaming is no longer just for fun. With CELESTE Casino Games, every move can earn you real Euro.
+                - <i class="fas fa-dice"></i> Play your favorite games
+                - <i class="fas fa-trophy"></i> Compete and stay active
+                - <i class="fas fa-wallet"></i> Earn €50 to €100 per game
+                Fun meets opportunity. Play smart. Earn Euro. <i class="fas fa-rocket"></i></p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+
+            <!-- Box 8 -->
+            <div class="work-box">
+                <img src="hero8.jpg" alt="CAC Certified" onerror="this.src='https://via.placeholder.com/400x220/00ff40/000000?text=CAC+Certified'">
+                <h3><i class="fas fa-certificate"></i> CELESTE is CAC Certified</h3>
+                <p>CELESTE is officially registered with the Corporate Affairs Commission (CAC) Nigeria, confirming our legal status.
+                This certification shows that CELESTE is a recognized digital platform built for structured opportunities and innovation.
+                <i class="fas fa-check-double"></i> Registered. Verified. Trusted.</p>
+                <a class='box-btn' href='reward.html'>GET STARTED</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="unified-container trust-section">
+        <div class="stat-item">
+            <div class="stat-icon">
+                <i class="fas fa-users-gear"></i>
+            </div>
+            <div class="stat-text">
+                <div class="live-badge">
+                    <div class="pulse-dot"></div> LIVE NOW
+                </div>
+                <h2>300,000+</h2>
+                <p>Verified Active Users</p>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-shield-halved"></i></div>
+            <div class="stat-text">
+                <div class="live-badge" style="border-color: #fff; color: #fff; background: rgba(255,255,255,0.1);">
+                    SECURE
+                </div>
+                <h2>Verified</h2>
+                <p>Trust Protocol</p>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-globe-africa"></i></div>
+            <div class="stat-text">
+                <div class="live-badge" style="border-color: #0088ff; color: #0088ff; background: rgba(0,136,255,0.1);">
+                    GLOBAL
+                </div>
+                <h2>Asset</h2>
+                <p>Ecosystem</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="faq-section" class="unified-container faq-section">
+        <h2 style="text-align: center; font-style: italic; font-weight: 950; text-transform: uppercase; margin-bottom: 30px;">Frequently Asked Questions</h2>
+        <details>
+            <summary>How do I start earning on Celeste?</summary>
+            <div style="padding: 22px; color: #aaa;">Simply click 'Join Now', complete your registration, and choose your preferred activity. You can start earning within minutes.</div>
+        </details>
+        <details>
+            <summary>Is my account information secure?</summary>
+            <div style="padding: 22px; color: #aaa;">Yes. Celeste uses end-to-end encryption for all user data and financial transactions.</div>
+        </details>
+        <details>
+            <summary>What are the withdrawal limits?</summary>
+            <div style="padding: 22px; color: #aaa;">Withdrawals are processed daily. There is a low minimum threshold to ensure quick access to funds.</div>
+        </details>
+        <details>
+            <summary>Is Celeste available in my country?</summary>
+            <div style="padding: 22px; color: #aaa;">Celeste is a global ecosystem. While CAC certified in Nigeria, it is accessible from anywhere in the world.</div>
+        </details>
+        <details>
+            <summary>Can I earn from multiple activities?</summary>
+            <div style="padding: 22px; color: #aaa;">Absolutely. You can earn from watching videos, chatting, and sharing content simultaneously. No caps.</div>
+        </details>
+    </div>
+
+    <footer class="main-footer">
+        <div class="unified-container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-container" style="margin-bottom: 20px;">
+                    <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placehold.com/40/00ff40/000000?text=C'">
+                    <div class="logo-text">CELESTE</div>
+                </div>
+                <p>Celeste is an innovation ecosystem connecting people, creating opportunities, and rewarding engagement.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="#about-section">About Us</a></li>
+                    <li><a href="#features-section">Features</a></li>
+                    <li><a href="#faq-section">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:celestedigitalnetwork@gmail.com">support@celeste.network</a></li>
+                    <li><i class="fas fa-location-dot"></i> <span>Port Harcourt, Nigeria</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 Celeste. Turning your time into value</div>
+    </footer>
+
+</body>
+</html>
